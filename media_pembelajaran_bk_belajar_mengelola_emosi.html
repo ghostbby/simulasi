@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Mengelola Emosi: Apa yang Akan Kamu Lakukan? | Media BK SMP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka (kartun/ramah) & Plus Jakarta Sans (jelas/modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Pengaturan Font Utama */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #E0F2FE 0%, #F3E8FF 35%, #FCE7F3 70%, #FEF3C7 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #334155;
+        }
+
+        h1, h2, h3, .font-cartoon {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Gaya Kartu 3D Claymorphism Lembut */
+        .clay-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 3px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                0 20px 40px -12px rgba(99, 102, 241, 0.16),
+                0 8px 16px -6px rgba(236, 72, 153, 0.08),
+                inset 0 -6px 12px rgba(226, 232, 240, 0.6),
+                inset 0 6px 12px rgba(255, 255, 255, 1);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Gaya Tombol 3D Tactile */
+        .btn-3d {
+            position: relative;
+            border-radius: 1.4rem;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: translateY(0);
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .btn-3d:active:not(:disabled) {
+            transform: translateY(4px);
+        }
+
+        .btn-primary-3d {
+            background: linear-gradient(180deg, #60A5FA 0%, #3B82F6 100%);
+            color: white;
+            border: 2px solid #93C5FD;
+            box-shadow: 
+                0 6px 0 #1D4ED8,
+                0 12px 20px rgba(59, 130, 246, 0.35),
+                inset 0 3px 6px rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-primary-3d:hover:not(:disabled) {
+            filter: brightness(1.05);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 0 #1D4ED8,
+                0 15px 25px rgba(59, 130, 246, 0.4),
+                inset 0 3px 6px rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-primary-3d:active:not(:disabled) {
+            transform: translateY(4px);
+            box-shadow: 
+                0 2px 0 #1D4ED8,
+                0 5px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-mint-3d {
+            background: linear-gradient(180deg, #34D399 0%, #10B981 100%);
+            color: white;
+            border: 2px solid #6EE7B7;
+            box-shadow: 
+                0 6px 0 #047857,
+                0 12px 20px rgba(16, 185, 129, 0.35),
+                inset 0 3px 6px rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-mint-3d:hover:not(:disabled) {
+            filter: brightness(1.05);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 0 #047857,
+                0 15px 25px rgba(16, 185, 129, 0.4),
+                inset 0 3px 6px rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-mint-3d:active:not(:disabled) {
+            transform: translateY(4px);
+            box-shadow: 
+                0 2px 0 #047857,
+                0 5px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Kartu Pilihan Jawaban 3D */
+        .option-card {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+            border: 2.5px solid #E2E8F0;
+            border-radius: 1.35rem;
+            box-shadow: 
+                0 5px 0 #CBD5E1,
+                0 8px 16px rgba(148, 163, 184, 0.15),
+                inset 0 2px 4px rgba(255, 255, 255, 1);
+            transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .option-card:hover:not(.disabled) {
+            transform: translateY(-3px);
+            border-color: #93C5FD;
+            background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 100%);
+            box-shadow: 
+                0 7px 0 #60A5FA,
+                0 12px 20px rgba(59, 130, 246, 0.18);
+        }
+
+        .option-card:active:not(.disabled) {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #60A5FA;
+        }
+
+        /* State Jawaban Benar */
+        .option-correct {
+            background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%) !important;
+            border-color: #34D399 !important;
+            box-shadow: 
+                0 5px 0 #059669,
+                0 10px 20px rgba(16, 185, 129, 0.22) !important;
+            color: #065F46;
+        }
+
+        /* State Jawaban Kurang Tepat */
+        .option-wrong {
+            background: linear-gradient(180deg, #FFF1F2 0%, #FFE4E6 100%) !important;
+            border-color: #FB7185 !important;
+            box-shadow: 
+                0 5px 0 #E11D48,
+                0 10px 20px rgba(244, 63, 94, 0.2) !important;
+            color: #881337;
+        }
+
+        .option-dimmed {
+            opacity: 0.65;
+            cursor: default;
+        }
+
+        /* Animasi Mengambang Lembut untuk Ilustrasi 3D */
+        @keyframes float3D {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1.5deg); }
+        }
+
+        .animate-float {
+            animation: float3D 4s ease-in-out infinite;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.92) translateY(14px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .animate-pop {
+            animation: popIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+
+        .animate-pulse-soft {
+            animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+
+        /* Latar Belakang Gelembung Pastel 3D */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(55px);
+            z-index: -1;
+            opacity: 0.65;
+            pointer-events: none;
+        }
+
+        /* Canvas Konfeti */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-200 selection:text-purple-900">
+
+    <!-- Dekorasi Gelembung Latar Pastel -->
+    <div class="bg-blob w-72 h-72 bg-sky-200 top-[-40px] left-[-40px]"></div>
+    <div class="bg-blob w-96 h-96 bg-purple-200 bottom-[-60px] right-[-50px]"></div>
+    <div class="bg-blob w-64 h-64 bg-amber-200 top-[40%] left-[60%]"></div>
+    <div class="bg-blob w-64 h-64 bg-emerald-200 bottom-[15%] left-[5%]"></div>
+
+    <!-- Canvas Konfeti untuk Halaman Hasil -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Kontainer Utama Aplikasi -->
+    <div class="min-h-screen flex flex-col justify-between max-w-4xl mx-auto px-4 py-4 sm:py-6">
+        
+        <!-- HEADER / TOP BAR -->
+        <header class="flex flex-wrap items-center justify-between gap-3 mb-4 sm:mb-6">
+            <!-- Badge Identitas Layanan BK -->
+            <div class="flex items-center gap-2.5 bg-white/85 backdrop-blur-md px-4 py-2 rounded-full border-2 border-white shadow-sm">
+                <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-400 to-purple-400 flex items-center justify-center text-white font-bold text-sm shadow-inner">
+                    BK
+                </span>
+                <div>
+                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider leading-none">Bimbingan & Konseling</p>
+                    <p class="text-[11px] text-slate-500 font-medium">Kelas VIII SMP • Regulasi Emosi</p>
+                </div>
+            </div>
+
+            <!-- Kontrol Suara & Skor Real-time -->
+            <div class="flex items-center gap-2.5">
+                <!-- Indikator Skor (Muncul saat simulasi berjalan) -->
+                <div id="score-badge" class="hidden items-center gap-2 bg-amber-100/90 border-2 border-amber-200 px-3.5 py-1.5 rounded-full shadow-sm">
+                    <span class="text-base">⭐</span>
+                    <span class="text-xs sm:text-sm font-bold text-amber-800">Skor: <span id="current-score" class="font-cartoon text-base">0</span></span>
+                </div>
+
+                <!-- Tombol Toggle Audio -->
+                <button id="sound-toggle" onclick="toggleSound()" aria-label="Suara Efek" title="Aktifkan/Matikan Efek Suara"
+                    class="flex items-center gap-1.5 bg-white/90 hover:bg-white border-2 border-slate-100 px-3.5 py-2 rounded-full shadow-sm text-slate-600 hover:text-indigo-600 transition active:scale-95 cursor-pointer">
+                    <span id="sound-icon" class="text-base">🔊</span>
+                    <span id="sound-text" class="text-xs font-bold hidden sm:inline">Suara Aktif</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- AREA KONTEN DINAMIS -->
+        <main id="app-container" class="flex-grow flex items-center justify-center">
+            
+            <!-- ==========================================
+                 1. HALAMAN PEMBUKA (INTRO SCREEN)
+            =========================================== -->
+            <section id="screen-intro" class="w-full clay-card p-6 sm:p-10 text-center animate-pop">
+                <!-- Pill Tag -->
+                <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 border border-purple-200 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold mb-4 shadow-inner">
+                    <span>✨</span> Media Simulasi Interaktif Siswa SMP Kelas VIII
+                </div>
+
+                <!-- Judul Utama & Subjudul -->
+                <h1 class="text-2xl sm:text-4xl md:text-[40px] font-bold text-slate-800 leading-tight mb-2 tracking-tight">
+                    BELAJAR MENGELOLA EMOSI:<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500">
+                        APA YANG AKAN KAMU LAKUKAN?
+                    </span>
+                </h1>
+                <p class="text-base sm:text-lg font-cartoon font-semibold text-indigo-500 mb-6">
+                    "Belajar Mengelola Emosi"
+                </p>
+
+                <!-- Ilustrasi Kartun 3D Siswa SMP & Ikon Emosi Mengambang -->
+                <div class="relative max-w-md mx-auto my-4 sm:my-6">
+                    <!-- Ikon Emosi Mengambang di Sekitar Karakter -->
+                    <div class="absolute -left-2 sm:left-2 top-4 bg-amber-100 border-2 border-white shadow-md rounded-2xl px-3 py-1.5 flex items-center gap-1.5 animate-float" style="animation-delay: 0.2s;">
+                        <span class="text-xl">😊</span>
+                        <span class="text-xs font-bold text-amber-800">Senang</span>
+                    </div>
+                    <div class="absolute -right-2 sm:right-2 top-6 bg-rose-100 border-2 border-white shadow-md rounded-2xl px-3 py-1.5 flex items-center gap-1.5 animate-float" style="animation-delay: 0.8s;">
+                        <span class="text-xl">😠</span>
+                        <span class="text-xs font-bold text-rose-800">Marah</span>
+                    </div>
+                    <div class="absolute left-0 sm:left-4 bottom-4 bg-sky-100 border-2 border-white shadow-md rounded-2xl px-3 py-1.5 flex items-center gap-1.5 animate-float" style="animation-delay: 1.3s;">
+                        <span class="text-xl">😢</span>
+                        <span class="text-xs font-bold text-sky-800">Sedih</span>
+                    </div>
+                    <div class="absolute right-0 sm:right-4 bottom-4 bg-emerald-100 border-2 border-white shadow-md rounded-2xl px-3 py-1.5 flex items-center gap-1.5 animate-float" style="animation-delay: 1.8s;">
+                        <span class="text-xl">😌</span>
+                        <span class="text-xs font-bold text-emerald-800">Tenang</span>
+                    </div>
+
+                    <!-- Wadah Karakter 3D SVG -->
+                    <div id="intro-character-container" class="w-48 h-48 sm:w-56 sm:h-56 mx-auto animate-float">
+                        <!-- Diisi oleh JS renderCharacterSVG('happy') -->
+                    </div>
+                </div>
+
+                <!-- Kotak Penjelasan Singkat -->
+                <div class="max-w-2xl mx-auto bg-gradient-to-br from-sky-50/90 to-indigo-50/90 border-2 border-white rounded-3xl p-5 sm:p-6 mb-7 shadow-inner">
+                    <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
+                        Halo teman-teman! Dalam kehidupan sehari-hari di sekolah maupun pertemanan, kita sering mengalami berbagai kejadian yang memicu emosi. Di simulasi ini, kamu akan menghadapi <span class="font-bold text-indigo-600">3 situasi sehari-hari</span> dan diminta untuk <span class="font-bold text-pink-600">mengenali perasaanmu serta memilih tindakan yang paling tepat</span>.
+                    </p>
+                </div>
+
+                <!-- Tombol Mulai Simulasi -->
+                <button onclick="startSimulation()" class="btn-3d btn-primary-3d text-lg sm:text-xl px-8 sm:px-10 py-4 inline-flex items-center gap-3 animate-pulse-soft">
+                    <span>Mulai Simulasi</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </button>
+            </section>
+
+            <!-- ==========================================
+                 2. HALAMAN SIMULASI (SCENARIO SCREEN)
+            =========================================== -->
+            <section id="screen-simulation" class="hidden w-full clay-card p-5 sm:p-8 animate-pop">
+                <!-- Progress Bar & Indikator Langkah -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-600 mb-2">
+                        <span id="sim-step-label" class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">
+                            Simulasi 1 dari 3
+                        </span>
+                        <span id="sim-progress-percent" class="text-indigo-600 font-cartoon">33%</span>
+                    </div>
+                    <div class="w-full h-3.5 bg-slate-200/80 rounded-full p-0.5 shadow-inner overflow-hidden">
+                        <div id="sim-progress-bar" class="h-full bg-gradient-to-r from-sky-400 via-indigo-500 to-purple-500 rounded-full transition-all duration-500" style="width: 33%"></div>
+                    </div>
+                </div>
+
+                <!-- Grid Konten: Kiri (Karakter & Situasi) | Kanan (Pilihan & Pembahasan) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Kolom Kiri: Ilustrasi 3D Karakter & Kartu Situasi -->
+                    <div class="lg:col-span-5 flex flex-col items-center">
+                        <!-- Kartu Visual Karakter -->
+                        <div id="character-stage" class="w-full bg-gradient-to-b from-amber-50 via-purple-50 to-sky-50 border-2 border-white rounded-3xl p-4 text-center shadow-inner relative overflow-hidden">
+                            <!-- Badge Emosi yang Dirasakan -->
+                            <div class="mb-2">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Emosi yang Muncul:</span>
+                                <div id="emotion-badges" class="flex flex-wrap justify-center gap-1.5">
+                                    <!-- Diisi dinamis -->
+                                </div>
+                            </div>
+
+                            <!-- Karakter Siswa SMP 3D -->
+                            <div id="sim-character-container" class="w-40 h-40 sm:w-44 sm:h-44 mx-auto my-1 transition-transform duration-300">
+                                <!-- SVG Karakter -->
+                            </div>
+
+                            <!-- Status Ekspresi -->
+                            <p id="character-caption" class="text-xs font-semibold text-slate-600 bg-white/80 rounded-full px-3 py-1 inline-block mt-1 shadow-sm">
+                                Ekspresi: Merasa malu & kesal
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Judul Situasi, Narasi, & Pilihan Tindakan -->
+                    <div class="lg:col-span-7 flex flex-col justify-between">
+                        <!-- Kotak Narasi Situasi -->
+                        <div class="bg-white/95 border-2 border-indigo-100 rounded-3xl p-5 mb-5 shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span id="sim-icon" class="text-2xl">🎨</span>
+                                <h2 id="sim-title" class="text-lg sm:text-xl font-bold text-slate-800">
+                                    SIMULASI PERTAMA: TEMAN MENGEJEK
+                                </h2>
+                            </div>
+                            <p id="sim-situation" class="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
+                                Kamu sedang berada di kelas. Temanmu mengejek hasil gambarmu di depan teman-teman lainnya. Kamu merasa malu, sedih, dan marah.
+                            </p>
+                        </div>
+
+                        <!-- Pertanyaan Pemicu -->
+                        <p class="text-xs sm:text-sm font-bold text-indigo-600 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+                            <span>🤔</span> Apa yang akan kamu lakukan? (Pilih salah satu)
+                        </p>
+
+                        <!-- Daftar Pilihan A, B, C -->
+                        <div id="options-container" class="space-y-3 mb-5">
+                            <!-- Diisi dinamis oleh JavaScript -->
+                        </div>
+
+                        <!-- Kotak Umpan Balik & Pembahasan (Muncul setelah menjawab) -->
+                        <div id="feedback-box" class="hidden rounded-3xl p-5 border-2 transition-all duration-300 animate-pop mb-4">
+                            <div class="flex items-start gap-3">
+                                <div id="feedback-icon" class="w-10 h-10 rounded-2xl flex items-center justify-center text-xl shrink-0 shadow-sm bg-white">
+                                    💡
+                                </div>
+                                <div>
+                                    <h3 id="feedback-heading" class="font-cartoon text-base sm:text-lg font-bold mb-1">
+                                        Tepat Sekali!
+                                    </h3>
+                                    <p id="feedback-text" class="text-xs sm:text-sm leading-relaxed font-medium">
+                                        Penjelasan pembahasan muncul di sini.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Lanjut (Muncul setelah menjawab) -->
+                        <div id="next-btn-wrapper" class="hidden justify-end">
+                            <button id="next-btn" onclick="nextSimulation()" class="btn-3d btn-mint-3d w-full sm:w-auto px-7 py-3.5 text-base sm:text-lg inline-flex items-center justify-center gap-2">
+                                <span id="next-btn-text">Lanjut ke Situasi Berikutnya</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 3. HALAMAN HASIL & PENUTUP (RESULT SCREEN)
+            =========================================== -->
+            <section id="screen-result" class="hidden w-full clay-card p-6 sm:p-10 text-center animate-pop">
+                <!-- Badge Selesai -->
+                <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold mb-3">
+                    <span>🎉</span> Simulasi Selesai!
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-2">
+                    Hasil Latihan Mengelola Emosimu
+                </h2>
+                <p id="result-rank-badge" class="text-base sm:text-lg font-cartoon font-semibold text-purple-600 mb-5">
+                    Pengelola Emosi yang Bijak!
+                </p>
+
+                <!-- Karakter 3D Ekspresi Bangga/Bahagia -->
+                <div id="result-character-container" class="w-40 h-40 sm:w-44 sm:h-44 mx-auto my-2 animate-float">
+                    <!-- SVG Karakter Bangga -->
+                </div>
+
+                <!-- Kartu Ringkasan Skor & Jawaban Tepat -->
+                <div class="grid grid-cols-2 gap-3 sm:gap-5 max-w-md mx-auto my-5">
+                    <div class="bg-gradient-to-b from-sky-50 to-sky-100/80 border-2 border-white rounded-3xl p-4 shadow-sm">
+                        <p class="text-xs font-bold text-sky-700 uppercase tracking-wider mb-1">Jawaban Tepat</p>
+                        <p class="text-2xl sm:text-3xl font-cartoon font-bold text-sky-900">
+                            <span id="final-correct-count">3</span> <span class="text-base font-normal text-sky-700">dari 3</span>
+                        </p>
+                    </div>
+                    <div class="bg-gradient-to-b from-amber-50 to-amber-100/80 border-2 border-white rounded-3xl p-4 shadow-sm">
+                        <p class="text-xs font-bold text-amber-700 uppercase tracking-wider mb-1">Total Skor</p>
+                        <p class="text-2xl sm:text-3xl font-cartoon font-bold text-amber-900">
+                            <span id="final-score-value">300</span> <span class="text-base font-normal text-amber-700">Poin</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Umpan Balik Personal & Motivasi -->
+                <div class="max-w-2xl mx-auto bg-white/90 border-2 border-purple-100 rounded-3xl p-5 mb-5 shadow-sm text-left sm:text-center">
+                    <h3 class="font-cartoon text-base sm:text-lg font-bold text-indigo-700 mb-1.5 flex items-center sm:justify-center gap-2">
+                        <span>🌟</span> Umpan Balik Untukmu
+                    </h3>
+                    <p id="result-feedback-message" class="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
+                        Luar biasa! Kamu mampu mengenali perasaanmu dan memilih respons yang tenang serta bijaksana.
+                    </p>
+                </div>
+
+                <!-- Kotak Pesan Penutup Wajib -->
+                <div class="max-w-2xl mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-0.5 rounded-3xl shadow-md mb-7">
+                    <div class="bg-white/95 rounded-[22px] p-5 sm:p-6">
+                        <div class="flex items-center justify-center gap-2 text-purple-600 font-bold text-xs uppercase tracking-wider mb-2">
+                            <span>💜</span> Pesan Penutup Sahabat BK
+                        </div>
+                        <p class="text-slate-800 text-sm sm:text-base font-semibold leading-relaxed italic">
+                            "Setiap orang memiliki emosi. Kita tidak harus menghilangkan emosi, tetapi belajar mengenali, memahami, dan mengelolanya dengan cara yang sehat. Yuk, menjadi pribadi yang lebih bijak dalam mengelola emosi!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tombol Mengulang Simulasi -->
+                <button onclick="restartSimulation()" class="btn-3d btn-primary-3d text-base sm:text-lg px-8 py-3.5 inline-flex items-center gap-2.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    <span>Ulangi Simulasi</span>
+                </button>
+            </section>
+
+        </main>
+
+        <!-- FOOTER SEDERHANA -->
+        <footer class="text-center mt-6 text-xs text-slate-500 font-medium">
+            Media Pembelajaran Layanan Bimbingan dan Konseling (BK) • SMP Kelas VIII
+        </footer>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIKA SIMULASI, AUDIO & KARAKTER 3D
+    =========================================== -->
+    <script>
+        /**
+         * 1. DATA SIMULASI (3 SKENARIO LENGKAP)
+         */
+        const simulations = [
+            {
+                id: 1,
+                title: "SIMULASI PERTAMA: TEMAN MENGEJEK",
+                icon: "🎨",
+                emotions: [
+                    { label: "Malu", color: "bg-pink-100 text-pink-700 border-pink-200", emoji: "😳" },
+                    { label: "Sedih", color: "bg-sky-100 text-sky-700 border-sky-200", emoji: "😢" },
+                    { label: "Marah", color: "bg-rose-100 text-rose-700 border-rose-200", emoji: "😠" }
+                ],
+                initialExpression: "angry_blush",
+                initialCaption: "Ekspresi: Malu, sedih, & menahan marah",
+                situation: "Kamu sedang berada di kelas. Temanmu mengejek hasil gambarmu di depan teman-teman lainnya. Kamu merasa malu, sedih, dan marah.",
+                options: [
+                    {
+                        key: "A",
+                        text: "Membalas mengejek agar dia merasakan hal yang sama.",
+                        isCorrect: false,
+                        feedbackTitle: "Kurang Tepat, Nih!",
+                        feedbackDetail: "Membalas ejekan hanya akan memicu pertengkaran baru dan membuat suasana kelas makin panas. Pilihan yang paling tepat adalah B: diam sejenak, menenangkan diri, lalu menyampaikan dengan baik bahwa perkataannya membuatmu tidak nyaman. Cara ini mencegah konflik semakin besar."
+                    },
+                    {
+                        key: "B",
+                        text: "Diam sejenak, menenangkan diri, lalu menyampaikan bahwa perkataannya membuatmu tidak nyaman.",
+                        isCorrect: true,
+                        feedbackTitle: "Tepat Sekali! Kamu Hebat!",
+                        feedbackDetail: "Dengan diam sejenak untuk menenangkan diri dan menyampaikan perasaan secara baik (asertif), kamu berhasil mengendalikan amarah sekaligus membuat temanmu mengerti batasan tanpa memicu konflik yang lebih besar."
+                    },
+                    {
+                        key: "C",
+                        text: "Langsung marah dan membentaknya di depan kelas.",
+                        isCorrect: false,
+                        feedbackTitle: "Hati-hati, Emosi Meledak!",
+                        feedbackDetail: "Langsung membentak saat emosi memuncak dapat memperkeruh suasana dan membuatmu menyesal kemudian. Tindakan yang lebih sehat adalah B: menenangkan diri sejenak dan menyampaikan perasaanmu secara baik agar konflik tidak membesar."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "SIMULASI KEDUA: NILAI ULANGAN TIDAK SESUAI HARAPAN",
+                icon: "📝",
+                emotions: [
+                    { label: "Kecewa", color: "bg-indigo-100 text-indigo-700 border-indigo-200", emoji: "😞" },
+                    { label: "Sedih", color: "bg-sky-100 text-sky-700 border-sky-200", emoji: "😢" }
+                ],
+                initialExpression: "sad_paper",
+                initialCaption: "Ekspresi: Kecewa & sedih melihat nilai",
+                situation: "Kamu sudah belajar dengan sungguh-sungguh, tetapi mendapatkan nilai ulangan yang rendah. Kamu merasa kecewa dan sedih.",
+                options: [
+                    {
+                        key: "A",
+                        text: "Menyalahkan guru dan teman-teman.",
+                        isCorrect: false,
+                        feedbackTitle: "Kurang Tepat!",
+                        feedbackDetail: "Menyalahkan orang lain tidak akan memperbaiki pemahaman atau nilaimu. Pilihan yang tepat adalah C: menerima perasaan kecewa dengan lapang dada, mengevaluasi cara belajar, dan berusaha memperbaiki hasil berikutnya. Ingat, kegagalan bukan akhir dari segalanya!"
+                    },
+                    {
+                        key: "B",
+                        text: "Merobek hasil ulangan karena merasa kecewa.",
+                        isCorrect: false,
+                        feedbackTitle: "Sayang Sekali, Jangan Merusak Ya!",
+                        feedbackDetail: "Merobek kertas ulangan justru menghilangkan bahan evaluasi untuk mengetahui bagian mana yang perlu dipelajari lagi. Pilihan yang paling tepat adalah C: menerima rasa kecewa, mengevaluasi cara belajar, dan menjadikannya kesempatan untuk belajar lebih baik."
+                    },
+                    {
+                        key: "C",
+                        text: "Menerima perasaan kecewa, mengevaluasi cara belajar, dan berusaha memperbaiki hasil berikutnya.",
+                        isCorrect: true,
+                        feedbackTitle: "Langkah yang Sangat Bijak!",
+                        feedbackDetail: "Merasa kecewa saat hasil belum sesuai harapan itu sangat wajar. Dengan menerima perasaan tersebut dan mengevaluasi cara belajar, kamu mengubah kegagalan menjadi kesempatan berharga untuk bertumbuh dan meraih hasil lebih baik!"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "SIMULASI KETIGA: BERTENGKAR DENGAN TEMAN",
+                icon: "🤝",
+                emotions: [
+                    { label: "Marah", color: "bg-rose-100 text-rose-700 border-rose-200", emoji: "😤" },
+                    { label: "Kesal", color: "bg-amber-100 text-amber-700 border-amber-200", emoji: "😒" }
+                ],
+                initialExpression: "annoyed_think",
+                initialCaption: "Ekspresi: Kesal & bingung setelah berdebat",
+                situation: "Kamu berbeda pendapat dengan sahabatmu sehingga terjadi pertengkaran. Kamu merasa marah dan ingin menghindarinya.",
+                options: [
+                    {
+                        key: "A",
+                        text: "Menyebarkan keburukan teman kepada orang lain.",
+                        isCorrect: false,
+                        feedbackTitle: "Waduh, Ini Merusak Persahabatan!",
+                        feedbackDetail: "Menyebarkan keburukan sahabat hanya akan memperluas masalah dan merusak kepercayaan. Tindakan yang tepat adalah B: memberi waktu untuk menenangkan diri, lalu mengajak teman berbicara baik-baik karena komunikasi yang baik membantu menyelesaikan konflik."
+                    },
+                    {
+                        key: "B",
+                        text: "Memberikan waktu untuk menenangkan diri, kemudian mengajak teman berbicara baik-baik.",
+                        isCorrect: true,
+                        feedbackTitle: "Keren! Dewasa & Bijaksana!",
+                        feedbackDetail: "Mengambil jeda sejenak agar kepala dingin, kemudian mengajak sahabat berdiskusi dengan tenang adalah kunci menyelesaikan konflik. Komunikasi yang baik dan kemampuan mengendalikan emosi menjaga persahabatan tetap utuh."
+                    },
+                    {
+                        key: "C",
+                        text: "Membalas dengan perkataan kasar.",
+                        isCorrect: false,
+                        feedbackTitle: "Kurang Tepat!",
+                        feedbackDetail: "Perkataan kasar saat marah dapat melukai hati sahabatmu dan membuat pertengkaran makin sulit diselesaikan. Pilihan terbaik adalah B: tenangkan diri terlebih dahulu, kemudian ajak teman berbicara baik-baik."
+                    }
+                ]
+            }
+        ];
+
+        /**
+         * 2. STATE APLIKASI
+         */
+        let currentIndex = 0;
+        let score = 0;
+        let correctCount = 0;
+        let hasAnsweredCurrent = false;
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        /**
+         * 3. WEB AUDIO API (EFEK SUARA TANPA FILE EKSTERNAL)
+         */
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(520, now);
+                    osc.frequency.exponentialRampToValueAtTime(680, now + 0.08);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+                    osc.start(now);
+                    osc.stop(now + 0.09);
+                } else if (type === 'correct') {
+                    // Nada ceria naik (C5 - E5 - G5)
+                    const notes = [523.25, 659.25, 783.99];
+                    notes.forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.type = 'triangle';
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.setValueAtTime(freq, now + idx * 0.09);
+                        g.gain.setValueAtTime(0.16, now + idx * 0.09);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.25);
+                        o.start(now + idx * 0.09);
+                        o.stop(now + idx * 0.09 + 0.26);
+                    });
+                } else if (type === 'wrong') {
+                    // Nada lembut turun
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(340, now);
+                    osc.frequency.linearRampToValueAtTime(240, now + 0.25);
+                    gain.gain.setValueAtTime(0.14, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+                    osc.start(now);
+                    osc.stop(now + 0.28);
+                } else if (type === 'finish') {
+                    // Fanfare kecil
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.type = 'triangle';
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.setValueAtTime(freq, now + idx * 0.11);
+                        g.gain.setValueAtTime(0.16, now + idx * 0.11);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.11 + 0.35);
+                        o.start(now + idx * 0.11);
+                        o.stop(now + idx * 0.11 + 0.36);
+                    });
+                }
+            } catch (e) {
+                // Abaikan jika browser memblokir autoplay audio
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            const text = document.getElementById('sound-text');
+            if (soundEnabled) {
+                icon.textContent = '🔊';
+                text.textContent = 'Suara Aktif';
+                playSound('click');
+            } else {
+                icon.textContent = '🔇';
+                text.textContent = 'Suara Mati';
+            }
+        }
+
+        /**
+         * 4. RENDER KARAKTER SISWA SMP GAYA KARTUN 3D (SVG GRADASI & BAYANGAN HALUS)
+         * Ekspresi: 'happy', 'angry_blush', 'sad_paper', 'annoyed_think', 'calm_smile', 'proud'
+         */
+        function renderCharacterSVG(expression = 'happy') {
+            // Tentukan detail ekspresi wajah & aksesoris
+            let eyebrows = '';
+            let eyes = '';
+            let mouth = '';
+            let cheeks = '';
+            let extraProp = '';
+            let bgAura = '#DBEAFE';
+
+            switch (expression) {
+                case 'happy':
+                case 'proud':
+                    bgAura = expression === 'proud' ? '#FEF3C7' : '#DBEAFE';
+                    eyebrows = `
+                        <path d="M68 82 Q76 76 84 82" stroke="#334155" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                        <path d="M116 82 Q124 76 132 82" stroke="#334155" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    `;
+                    eyes = `
+                        <ellipse cx="76" cy="95" rx="6.5" ry="7.5" fill="#1E293B"/>
+                        <circle cx="78.5" cy="92.5" r="2.3" fill="#FFFFFF"/>
+                        <ellipse cx="124" cy="95" rx="6.5" ry="7.5" fill="#1E293B"/>
+                        <circle cx="126.5" cy="92.5" r="2.3" fill="#FFFFFF"/>
+                    `;
+                    mouth = `
+                        <path d="M86 113 Q100 127 114 113 Z" fill="#FB7185" stroke="#BE123C" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M91 119 Q100 124 109 119" fill="#FDA4AF"/>
+                    `;
+                    cheeks = `
+                        <ellipse cx="64" cy="107" rx="8" ry="4.5" fill="#FDA4AF" opacity="0.65"/>
+                        <ellipse cx="136" cy="107" rx="8" ry="4.5" fill="#FDA4AF" opacity="0.65"/>
+                    `;
+                    if (expression === 'proud') {
+                        extraProp = `
+                            <!-- Bintang prestasi di sekitar kepala -->
+                            <path d="M35 55 L38 62 L45 63 L40 68 L41 75 L35 71 L29 75 L30 68 L25 63 L32 62 Z" fill="#FBBF24"/>
+                            <path d="M165 50 L167 55 L173 56 L169 60 L170 65 L165 62 L160 65 L161 60 L157 56 L163 55 Z" fill="#34D399"/>
+                        `;
+                    }
+                    break;
+
+                case 'calm_smile':
+                    bgAura = '#D1FAE5';
+                    eyebrows = `
+                        <path d="M68 83 Q76 79 84 83" stroke="#334155" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                        <path d="M116 83 Q124 79 132 83" stroke="#334155" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                    `;
+                    eyes = `
+                        <path d="M69 96 Q76 89 83 96" stroke="#1E293B" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+                        <path d="M117 96 Q124 89 131 96" stroke="#1E293B" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+                    `;
+                    mouth = `
+                        <path d="M88 114 Q100 123 112 114" stroke="#334155" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    `;
+                    cheeks = `
+                        <ellipse cx="64" cy="106" rx="8" ry="4.5" fill="#6EE7B7" opacity="0.6"/>
+                        <ellipse cx="136" cy="106" rx="8" ry="4.5" fill="#6EE7B7" opacity="0.6"/>
+                    `;
+                    extraProp = `
+                        <!-- Simbol hati/tenang -->
+                        <circle cx="158" cy="64" r="14" fill="#ECFDF5" stroke="#34D399" stroke-width="2"/>
+                        <text x="158" y="69" font-size="14" text-anchor="middle">✨</text>
+                    `;
+                    break;
+
+                case 'angry_blush':
+                    bgAura = '#FFE4E6';
+                    eyebrows = `
+                        <path d="M67 80 L85 88" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M133 80 L115 88" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+                    `;
+                    eyes = `
+                        <ellipse cx="76" cy="96" rx="6" ry="6.5" fill="#1E293B"/>
+                        <circle cx="78" cy="94" r="2" fill="#FFFFFF"/>
+                        <ellipse cx="124" cy="96" rx="6" ry="6.5" fill="#1E293B"/>
+                        <circle cx="126" cy="94" r="2" fill="#FFFFFF"/>
+                    `;
+                    mouth = `
+                        <path d="M88 119 Q100 112 112 119" stroke="#9F1239" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    `;
+                    cheeks = `
+                        <ellipse cx="64" cy="106" rx="9" ry="5" fill="#FB7185" opacity="0.65"/>
+                        <ellipse cx="136" cy="106" rx="9" ry="5" fill="#FB7185" opacity="0.65"/>
+                    `;
+                    extraProp = `
+                        <!-- Simbol kesal di pelipis -->
+                        <path d="M144 58 L150 64 M150 58 L144 64" stroke="#F43F5E" stroke-width="3" stroke-linecap="round"/>
+                    `;
+                    break;
+
+                case 'sad_paper':
+                    bgAura = '#E0F2FE';
+                    eyebrows = `
+                        <path d="M67 86 L84 80" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M133 86 L116 80" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+                    `;
+                    eyes = `
+                        <ellipse cx="76" cy="97" rx="6" ry="6.5" fill="#1E293B"/>
+                        <circle cx="78" cy="95" r="2.2" fill="#FFFFFF"/>
+                        <ellipse cx="124" cy="97" rx="6" ry="6.5" fill="#1E293B"/>
+                        <circle cx="126" cy="95" r="2.2" fill="#FFFFFF"/>
+                        <!-- Tetes air mata kecil -->
+                        <path d="M66 103 Q63 109 66 112 Q69 109 66 103 Z" fill="#38BDF8"/>
+                    `;
+                    mouth = `
+                        <path d="M89 120 Q100 113 111 120" stroke="#334155" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                    `;
+                    cheeks = `
+                        <ellipse cx="64" cy="108" rx="7" ry="4" fill="#93C5FD" opacity="0.5"/>
+                        <ellipse cx="136" cy="108" rx="7" ry="4" fill="#93C5FD" opacity="0.5"/>
+                    `;
+                    extraProp = `
+                        <!-- Kertas ulangan di sudut bawah -->
+                        <g transform="translate(132, 128) rotate(10)">
+                            <rect x="0" y="0" width="38" height="46" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+                            <line x1="7" y1="12" x2="31" y2="12" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="7" y1="20" x2="25" y2="20" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+                            <text x="19" y="38" font-size="13" font-weight="bold" fill="#EF4444" text-anchor="middle" font-family="Fredoka">C-</text>
+                        </g>
+                    `;
+                    break;
+
+                case 'annoyed_think':
+                    bgAura = '#F3E8FF';
+                    eyebrows = `
+                        <path d="M68 81 L84 85" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M116 82 Q124 77 132 82" stroke="#334155" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    `;
+                    eyes = `
+                        <ellipse cx="75" cy="96" rx="6" ry="6" fill="#1E293B"/>
+                        <circle cx="74" cy="94" r="2" fill="#FFFFFF"/>
+                        <ellipse cx="123" cy="96" rx="6" ry="6" fill="#1E293B"/>
+                        <circle cx="122" cy="94" r="2" fill="#FFFFFF"/>
+                    `;
+                    mouth = `
+                        <path d="M90 117 Q100 115 110 119" stroke="#334155" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                    `;
+                    cheeks = `
+                        <ellipse cx="64" cy="107" rx="7.5" ry="4" fill="#FDBA74" opacity="0.55"/>
+                        <ellipse cx="136" cy="107" rx="7.5" ry="4" fill="#FDBA74" opacity="0.55"/>
+                    `;
+                    extraProp = `
+                        <!-- Gelembung pikiran -->
+                        <circle cx="152" cy="76" r="4" fill="#FFFFFF" stroke="#C084FC" stroke-width="2"/>
+                        <circle cx="162" cy="64" r="6" fill="#FFFFFF" stroke="#C084FC" stroke-width="2"/>
+                        <circle cx="174" cy="48" r="11" fill="#FFFFFF" stroke="#C084FC" stroke-width="2"/>
+                        <text x="174" y="53" font-size="12" text-anchor="middle">💭</text>
+                    `;
+                    break;
+            }
+
+            return `
+            <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Gradasi 3D Wajah -->
+                    <radialGradient id="skinGrad" cx="40%" cy="35%" r="65%">
+                        <stop offset="0%" stop-color="#FFEDD5"/>
+                        <stop offset="65%" stop-color="#FED7AA"/>
+                        <stop offset="100%" stop-color="#FDBA74"/>
+                    </radialGradient>
+                    <!-- Gradasi 3D Rambut -->
+                    <radialGradient id="hairGrad" cx="35%" cy="25%" r="70%">
+                        <stop offset="0%" stop-color="#475569"/>
+                        <stop offset="60%" stop-color="#1E293B"/>
+                        <stop offset="100%" stop-color="#0F172A"/>
+                    </radialGradient>
+                    <!-- Gradasi Seragam Putih SMP 3D -->
+                    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#FFFFFF"/>
+                        <stop offset="100%" stop-color="#E2E8F0"/>
+                    </linearGradient>
+                    <!-- Gradasi Dasi/Rompi Biru SMP -->
+                    <linearGradient id="tieGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#3B82F6"/>
+                        <stop offset="100%" stop-color="#1D4ED8"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- Lingkaran Latar Belakang 3D Soft -->
+                <circle cx="100" cy="102" r="82" fill="${bgAura}" stroke="#FFFFFF" stroke-width="5"/>
+
+                <!-- Badan / Seragam SMP -->
+                <path d="M44 185 C44 152, 68 140, 100 140 C132 140, 156 152, 156 185 Z" fill="url(#shirtGrad)" stroke="#CBD5E1" stroke-width="2"/>
+                
+                <!-- Kerah Seragam & Dasi Biru SMP -->
+                <path d="M82 141 L100 158 L118 141" fill="none" stroke="#CBD5E1" stroke-width="3" stroke-linejoin="round"/>
+                <polygon points="95,148 105,148 103,156 97,156" fill="url(#tieGrad)"/>
+                <polygon points="97,156 103,156 106,182 100,188 94,182" fill="url(#tieGrad)"/>
+                <!-- Saku Kemeja dengan Badge OSIS kecil -->
+                <rect x="118" y="160" width="18" height="20" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+                <circle cx="127" cy="168" r="4" fill="#3B82F6"/>
+
+                <!-- Leher -->
+                <rect x="89" y="126" width="22" height="20" rx="8" fill="#FDBA74"/>
+
+                <!-- Telinga Kiri & Kanan -->
+                <circle cx="52" cy="98" r="11" fill="#FDBA74"/>
+                <circle cx="148" cy="98" r="11" fill="#FDBA74"/>
+
+                <!-- Kepala Bulat 3D Clay -->
+                <rect x="52" y="45" width="96" height="92" rx="44" fill="url(#skinGrad)"/>
+                <!-- Kilau 3D pada dahi -->
+                <ellipse cx="82" cy="58" rx="18" ry="7" fill="#FFFFFF" opacity="0.45"/>
+
+                <!-- Rambut Kartun 3D -->
+                <path d="M50 86 C48 48, 74 32, 102 32 C130 32, 152 48, 150 86 C146 68, 134 58, 120 62 C112 52, 92 52, 82 62 C68 58, 56 68, 50 86 Z" fill="url(#hairGrad)"/>
+                <!-- Jambul lucu di atas -->
+                <path d="M92 33 Q100 20 112 31" fill="url(#hairGrad)"/>
+
+                <!-- Fitur Wajah Dinamis -->
+                ${cheeks}
+                ${eyebrows}
+                ${eyes}
+                ${mouth}
+                ${extraProp}
+            </svg>`;
+        }
+
+        /**
+         * 5. NAVIGASI & LOGIKA SIMULASI
+         */
+        function showScreen(screenId) {
+            const screens = ['screen-intro', 'screen-simulation', 'screen-result'];
+            screens.forEach(id => {
+                const el = document.getElementById(id);
+                if (id === screenId) {
+                    el.classList.remove('hidden');
+                    // Trigger ulang animasi pop
+                    el.classList.remove('animate-pop');
+                    void el.offsetWidth;
+                    el.classList.add('animate-pop');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+        }
+
+        function startSimulation() {
+            playSound('click');
+            currentIndex = 0;
+            score = 0;
+            correctCount = 0;
+            updateScoreUI();
+            document.getElementById('score-badge').classList.remove('hidden');
+            document.getElementById('score-badge').classList.add('flex');
+            showScreen('screen-simulation');
+            loadSimulation(currentIndex);
+        }
+
+        function updateScoreUI() {
+            document.getElementById('current-score').textContent = score;
+        }
+
+        function loadSimulation(index) {
+            hasAnsweredCurrent = false;
+            const sim = simulations[index];
+
+            // Update Progress Bar & Langkah
+            const stepNum = index + 1;
+            const totalSteps = simulations.length;
+            const percent = Math.round((stepNum / totalSteps) * 100);
+            document.getElementById('sim-step-label').textContent = `Simulasi ${stepNum} dari ${totalSteps}`;
+            document.getElementById('sim-progress-percent').textContent = `${percent}%`;
+            document.getElementById('sim-progress-bar').style.width = `${percent}%`;
+
+            // Update Emosi Badges
+            const badgeContainer = document.getElementById('emotion-badges');
+            badgeContainer.innerHTML = sim.emotions.map(em => `
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold border ${em.color} shadow-xs">
+                    <span>${em.emoji}</span> ${em.label}
+                </span>
+            `).join('');
+
+            // Render Karakter Awal Situasi
+            document.getElementById('sim-character-container').innerHTML = renderCharacterSVG(sim.initialExpression);
+            document.getElementById('character-caption').textContent = sim.initialCaption;
+
+            // Update Judul & Teks Situasi
+            document.getElementById('sim-icon').textContent = sim.icon;
+            document.getElementById('sim-title').textContent = sim.title;
+            document.getElementById('sim-situation').textContent = sim.situation;
+
+            // Sembunyikan Feedback & Tombol Lanjut
+            const feedbackBox = document.getElementById('feedback-box');
+            feedbackBox.classList.add('hidden');
+            const nextWrapper = document.getElementById('next-btn-wrapper');
+            nextWrapper.classList.add('hidden');
+            nextWrapper.classList.remove('flex');
+
+            // Render Pilihan A, B, C
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = sim.options.map((opt, optIdx) => `
+                <button type="button" id="opt-btn-${optIdx}" onclick="selectOption(${optIdx})"
+                    class="option-card w-full text-left p-4 flex items-start gap-3.5 group">
+                    <span id="opt-badge-${optIdx}" class="w-9 h-9 rounded-2xl bg-indigo-100 text-indigo-700 group-hover:bg-indigo-600 group-hover:text-white font-cartoon font-bold text-base flex items-center justify-center shrink-0 transition-colors shadow-inner">
+                        ${opt.key}
+                    </span>
+                    <span class="text-sm sm:text-base font-semibold text-slate-700 leading-snug pt-1">
+                        ${opt.text}
+                    </span>
+                </button>
+            `).join('');
+        }
+
+        function selectOption(selectedIdx) {
+            if (hasAnsweredCurrent) return;
+            hasAnsweredCurrent = true;
+
+            const sim = simulations[currentIndex];
+            const chosenOption = sim.options[selectedIdx];
+
+            // Update Skor & Suara
+            if (chosenOption.isCorrect) {
+                score += 100;
+                correctCount += 1;
+                updateScoreUI();
+                playSound('correct');
+                // Ubah ekspresi karakter menjadi tenang & tersenyum
+                document.getElementById('sim-character-container').innerHTML = renderCharacterSVG('calm_smile');
+                document.getElementById('character-caption').textContent = "Ekspresi: Tenang, lega & tersenyum bijak 😊";
+            } else {
+                playSound('wrong');
+                document.getElementById('character-caption').textContent = "Ekspresi: Masih tegang, yuk pelajari cara yang lebih tepat!";
+            }
+
+            // Highlight kartu pilihan
+            sim.options.forEach((opt, idx) => {
+                const btn = document.getElementById(`opt-btn-${idx}`);
+                const badge = document.getElementById(`opt-badge-${idx}`);
+                btn.classList.add('disabled');
+                btn.disabled = true;
+
+                if (opt.isCorrect) {
+                    btn.classList.add('option-correct');
+                    badge.className = "w-9 h-9 rounded-2xl bg-emerald-500 text-white font-cartoon font-bold text-base flex items-center justify-center shrink-0 shadow-sm";
+                    badge.innerHTML = "✓";
+                } else if (idx === selectedIdx && !opt.isCorrect) {
+                    btn.classList.add('option-wrong');
+                    badge.className = "w-9 h-9 rounded-2xl bg-rose-500 text-white font-cartoon font-bold text-base flex items-center justify-center shrink-0 shadow-sm";
+                    badge.innerHTML = "✕";
+                } else {
+                    btn.classList.add('option-dimmed');
+                }
+            });
+
+            // Tampilkan Kotak Umpan Balik & Pembahasan
+            const feedbackBox = document.getElementById('feedback-box');
+            const feedbackIcon = document.getElementById('feedback-icon');
+            const feedbackHeading = document.getElementById('feedback-heading');
+            const feedbackText = document.getElementById('feedback-text');
+
+            feedbackBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-900', 'bg-amber-50', 'border-amber-300', 'text-amber-950');
+
+            if (chosenOption.isCorrect) {
+                feedbackBox.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-900');
+                feedbackIcon.textContent = "🌟";
+                feedbackHeading.textContent = chosenOption.feedbackTitle;
+                feedbackHeading.className = "font-cartoon text-base sm:text-lg font-bold mb-1 text-emerald-700";
+            } else {
+                feedbackBox.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-950');
+                feedbackIcon.textContent = "💡";
+                feedbackHeading.textContent = chosenOption.feedbackTitle;
+                feedbackHeading.className = "font-cartoon text-base sm:text-lg font-bold mb-1 text-amber-800";
+            }
+            feedbackText.textContent = chosenOption.feedbackDetail;
+
+            // Tampilkan Tombol Lanjut
+            const nextWrapper = document.getElementById('next-btn-wrapper');
+            const nextBtnText = document.getElementById('next-btn-text');
+            nextBtnText.textContent = (currentIndex < simulations.length - 1) 
+                ? "Lanjut ke Situasi Berikutnya" 
+                : "Lihat Hasil Simulasi";
+            nextWrapper.classList.remove('hidden');
+            nextWrapper.classList.add('flex');
+        }
+
+        function nextSimulation() {
+            playSound('click');
+            if (currentIndex < simulations.length - 1) {
+                currentIndex++;
+                loadSimulation(currentIndex);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            playSound('finish');
+            showScreen('screen-result');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Render Karakter Bangga
+            document.getElementById('result-character-container').innerHTML = renderCharacterSVG('proud');
+
+            // Isi Data Skor
+            document.getElementById('final-correct-count').textContent = correctCount;
+            document.getElementById('final-score-value').textContent = score;
+
+            // Umpan Balik Berdasarkan Hasil Jawaban
+            const rankBadge = document.getElementById('result-rank-badge');
+            const feedbackMsg = document.getElementById('result-feedback-message');
+
+            if (correctCount === 3) {
+                rankBadge.textContent = "🏆 Juara Pengelola Emosi yang Bijak!";
+                feedbackMsg.textContent = "Luar biasa! Kamu berhasil menjawab semua situasi dengan tepat. Kamu sudah memahami cara mengenali emosi diri, menenangkan diri saat marah atau kecewa, dan menyelesaikannya dengan komunikasi yang sehat. Pertahankan sikap positif ini dalam keseharianmu di sekolah maupun di rumah!";
+                launchConfetti();
+            } else if (correctCount === 2) {
+                rankBadge.textContent = "🌟 Hebat! Pengelola Emosi yang Baik!";
+                feedbackMsg.textContent = "Bagus sekali! Kamu sudah mampu memilih tindakan yang sehat di sebagian besar situasi. Sedikit latihan lagi dalam menahan impuls saat emosi memuncak akan membuatmu semakin bijak menghadapi masalah sehari-hari. Terus berlatih ya!";
+                launchConfetti();
+            } else {
+                rankBadge.textContent = "🌱 Langkah Awal yang Baik, Yuk Terus Belajar!";
+                feedbackMsg.textContent = "Terima kasih sudah mencoba simulasi ini! Mengelola emosi memang butuh latihan dan kesabaran. Coba perhatikan kembali pembahasan pada setiap situasi tadi, lalu ulangi simulasi untuk melatih cara merespons emosi dengan lebih tenang dan sehat.";
+            }
+        }
+
+        function restartSimulation() {
+            playSound('click');
+            stopConfetti();
+            currentIndex = 0;
+            score = 0;
+            correctCount = 0;
+            updateScoreUI();
+            document.getElementById('score-badge').classList.add('hidden');
+            document.getElementById('score-badge').classList.remove('flex');
+            showScreen('screen-intro');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * 6. ANIMASI KONFETI LEMBUT UNTUK HALAMAN HASIL
+         */
+        let confettiAnimationId = null;
+        let confettiParticles = [];
+
+        function launchConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const colors = ['#60A5FA', '#F472B6', '#34D399', '#FBBF24', '#A78BFA'];
+            confettiParticles = Array.from({ length: 75 }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                r: Math.random() * 6 + 4,
+                d: Math.random() * 2 + 1.5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                tilt: Math.random() * 10 - 5,
+                tiltAngle: 0,
+                tiltSpeed: Math.random() * 0.08 + 0.03
+            }));
+
+            let frames = 0;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confettiParticles.forEach(p => {
+                    p.tiltAngle += p.tiltSpeed;
+                    p.y += p.d;
+                    p.tilt = Math.sin(p.tiltAngle) * 12;
+
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                    ctx.stroke();
+
+                    if (p.y > canvas.height && frames < 180) {
+                        p.y = -10;
+                        p.x = Math.random() * canvas.width;
+                    }
+                });
+                frames++;
+                if (frames < 320) {
+                    confettiAnimationId = requestAnimationFrame(draw);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            draw();
+        }
+
+        function stopConfetti() {
+            if (confettiAnimationId) {
+                cancelAnimationFrame(confettiAnimationId);
+                confettiAnimationId = null;
+            }
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Inisialisasi Karakter Halaman Pembuka saat Halaman Dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('intro-character-container').innerHTML = renderCharacterSVG('happy');
+        });
+
+        // Responsif ukuran canvas konfeti saat layar diubah
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
+    </script>
+</body>
+</html>
